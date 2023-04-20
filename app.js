@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 var cors = require('cors')
 const app = express();
+const router = require('./router/controller');
 
 // Models
 const Book = require('./Models/Book.js');
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 app.use(cors());
+app.use(router);
 
 
 app.get('/', (req, res) => {
@@ -40,5 +42,19 @@ app.get('/readBookDoc', (req, res) => {
 			res.send(books);
 		})
 }) 
+
+app.post('/addBook', (req, res) => {
+	let data = req.body;
+	const { title, author, image, pageCount, read } = data;
+	const NewBook = new Book({
+	    title: title,
+	    author: author,
+	    image: image,
+	    pageCount: pageCount,
+	    read: read,
+	});
+
+	NewBook.save();
+})
 
 app.listen('3000');
