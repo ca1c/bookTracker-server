@@ -6,6 +6,7 @@ const bookSchema = new mongoose.Schema({
 	image: String,
 	pageCount: String,
 	read: String,
+	deleted: Boolean
 })
 
 const Book = mongoose.model('Book', bookSchema);
