@@ -1,9 +1,10 @@
 const Book = require('../../../Models/Book.js');
 
-async function deleteBook(req, res) {
+async function editBook(req, res) {
     let status;
+
     try {
-        await Book.updateOne({_id: req.body._id}, {deleted: true});
+        await Book.updateOne({ _id: req.body._id }, { read: this.body.progress });
         status = 200;
     }
     catch(error) {
@@ -14,4 +15,4 @@ async function deleteBook(req, res) {
     res.sendStatus(status);
 }
 
-module.exports = deleteBook;
+module.exports = editBook;
