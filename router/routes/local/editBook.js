@@ -4,7 +4,7 @@ async function editBook(req, res) {
     let status;
 
     try {
-        await Book.updateOne({ _id: req.body._id }, { read: this.body.progress });
+        await Book.updateOne({ _id: req.body._id }, { read: req.body.progress });
         status = 200;
     }
     catch(error) {
