@@ -11,6 +11,10 @@ const index = require('./routes/local/index.js');
 const addBook = require('./routes/local/addBook.js');
 const deleteBook = require('./routes/local/deleteBook.js');
 const editBook = require('./routes/local/editBook.js');
+const createUser = require('./routes/local/createUser.js');
+const login = require('./routes/local/login.js');
+const authenticateFront = require('./routes/local/authenticateFront.js');
+const logout = require('./routes/local/logout.js');
 
 //router
 //get
@@ -22,5 +26,9 @@ router.get('/readBookDoc', readBookDoc);
 router.post('/addBook', addBook);
 router.post('/deleteBook', deleteBook);
 router.post('/editBook', editBook);
+router.post('/createUser', createUser);
+router.post('/login', login);
+router.post('/authenticateFront', authenticateFront);
+router.post('/logout', logout);
 
 module.exports = router;
