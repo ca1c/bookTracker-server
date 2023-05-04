@@ -19,7 +19,7 @@ async function login(req, res) {
         }
 
         req.session.save();
-        res.send({message: `Login Successful:`, user: req.session.id, expires: req.session.cookie.expires});
+        res.send({message: `Login Successful:`, user: req.session.id, username: user.username, expires: req.session.cookie.expires});
     });
 }
 
