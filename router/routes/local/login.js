@@ -8,18 +8,18 @@ async function login(req, res) {
     const { username, password } = data;
     let user = await User.findOne({username: username});
     if(!user) {
-        res.send({message: "user not found"});
+        res.send({ error: true, message: "incorrect username or password" });
         return;
     }
 
     bcrypt.compare(password, user.password, function(err, result) {
         if(!result) {
-            res.send({ message: "incorrect password" });
+            res.send({ error: true, message: "incorrect username or password" });
             return;
         }
 
         req.session.save();
-        res.send({message: `Login Successful:`, user: req.session.id, username: user.username, expires: req.session.cookie.expires});
+        res.send({error: false, message: `Login Successful:`, user: req.session.id, username: user.username, expires: req.session.cookie.expires});
     });
 }
 

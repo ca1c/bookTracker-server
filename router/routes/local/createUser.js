@@ -6,11 +6,14 @@ const bcrypt = require('bcrypt');
 async function createUser(req, res) {
     const data = req.body;
     const { email, username, password } = data;
-    console.log("salt", process.env.SALT_ROUNDS)
     let user = await User.findOne({username: username});
     let userEmail = await User.findOne({email: email});
-    if(user || userEmail) {
-        res.send({message: "username taken"});
+    if(user) {
+        res.send({error: true, message: "username taken"});
+        return;
+    }
+    if(userEmail) {
+        res.send({error: true, message: "email taken"});
         return;
     }
 
@@ -25,7 +28,7 @@ async function createUser(req, res) {
     
         NewUser.save();
 
-        res.send({message: "account creation successful"});
+        res.send({error: false, message: "account creation successful"});
     });
 }
 
