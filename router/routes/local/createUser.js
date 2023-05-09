@@ -1,6 +1,7 @@
 require('dotenv').config();
 const User = require('../../../Models/User.js');
 const bcrypt = require('bcrypt');
+const sendConfirmationEmail = require('../../../lib/sendConfirmationEmail.js');
 
 
 async function createUser(req, res) {
@@ -23,12 +24,14 @@ async function createUser(req, res) {
             email: email,
             username: username,
             password: hash,
+            emailConfirmed: false,
             deleted: false,
         });
     
         NewUser.save();
+        sendConfirmationEmail(email)
 
-        res.send({error: false, message: "account creation successful"});
+        res.send({error: true, message: `Confirmation email sent to: ${email}`});
     });
 }
 

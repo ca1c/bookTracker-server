@@ -3,7 +3,6 @@ const Book = require('../../../Models/Book.js');
 function readBookDoc(req, res) {
     if(!req.query.username) {
         res.sendStatus(500);
-        console.log(req.query);
         return;
     }
 

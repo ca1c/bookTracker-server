@@ -6,6 +6,7 @@ const router = express.Router();
 const searchBook = require('./routes/public/googleBooks.js');
 const readBookDoc = require('./routes/local/readBookDoc.js');
 const index = require('./routes/local/index.js');
+const confirmEmail = require('./routes/local/confirmEmail.js');
 
 //post
 const addBook = require('./routes/local/addBook.js');
@@ -16,11 +17,13 @@ const login = require('./routes/local/login.js');
 const authenticateFront = require('./routes/local/authenticateFront.js');
 const logout = require('./routes/local/logout.js');
 
+
 //router
 //get
 router.get('/', index);
 router.get('/searchBook', searchBook);
 router.get('/readBookDoc', readBookDoc);
+router.get('/confirmEmail', confirmEmail)
 
 //post
 router.post('/addBook', addBook);
