@@ -12,6 +12,11 @@ async function login(req, res) {
         return;
     }
 
+    if(!user.emailConfirmed) {
+        res.send({ error: true, message: "please confirm your email"});
+        return;
+    }
+
     bcrypt.compare(password, user.password, function(err, result) {
         if(!result) {
             res.send({ error: true, message: "incorrect username or password" });
