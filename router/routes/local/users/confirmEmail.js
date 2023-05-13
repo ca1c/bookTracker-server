@@ -1,8 +1,9 @@
-const Email = require('../../../Models/Email');
-const User = require('../../../Models/User');
+const Email = require('../../../../Models/Email');
+const User = require('../../../../Models/User');
 
 async function confirmEmail(req, res) {
-    const { e } = req.query;
+    const data = req.query;
+    const { e } = data;
 
     if(!e) {
         res.send({error: true, message: "no email id query"});

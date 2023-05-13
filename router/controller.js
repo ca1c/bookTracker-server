@@ -3,19 +3,21 @@ const router = express.Router();
 
 //routes
 //get
-const searchBook = require('./routes/public/googleBooks.js');
-const readBookDoc = require('./routes/local/readBookDoc.js');
+const searchBook = require('./routes/local/googleBooks.js');
+const readBookDoc = require('./routes/local/books/readBookDoc.js');
 const index = require('./routes/local/index.js');
-const confirmEmail = require('./routes/local/confirmEmail.js');
+const confirmEmail = require('./routes/local/users/confirmEmail.js');
 
 //post
-const addBook = require('./routes/local/addBook.js');
-const deleteBook = require('./routes/local/deleteBook.js');
-const editBook = require('./routes/local/editBook.js');
-const createUser = require('./routes/local/createUser.js');
-const login = require('./routes/local/login.js');
+const addBook = require('./routes/local/books/addBook.js');
+const deleteBook = require('./routes/local/books/deleteBook.js');
+const editBook = require('./routes/local/books/editBook.js');
+const createUser = require('./routes/local/users/createUser.js');
+const login = require('./routes/local/users/login.js');
 const authenticateFront = require('./routes/local/authenticateFront.js');
-const logout = require('./routes/local/logout.js');
+const logout = require('./routes/local/users/logout.js');
+const deleteUser = require('./routes/local/users/deleteUser.js');
+const editUsername = require('./routes/local/users/editUsername.js');
 
 
 //router
@@ -23,7 +25,7 @@ const logout = require('./routes/local/logout.js');
 router.get('/', index);
 router.get('/searchBook', searchBook);
 router.get('/readBookDoc', readBookDoc);
-router.get('/confirmEmail', confirmEmail)
+router.get('/confirmEmail', confirmEmail);
 
 //post
 router.post('/addBook', addBook);
@@ -33,5 +35,7 @@ router.post('/createUser', createUser);
 router.post('/login', login);
 router.post('/authenticateFront', authenticateFront);
 router.post('/logout', logout);
+router.post('/deleteUser', deleteUser);
+router.post('/editUsername', editUsername);
 
 module.exports = router;

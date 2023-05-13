@@ -1,12 +1,23 @@
 require('dotenv').config();
-const User = require('../../../Models/User.js');
+const User = require('../../../../Models/User.js');
 const bcrypt = require('bcrypt');
 
 
 async function login(req, res) {
     const data = req.body;
     const { username, password } = data;
+
+    if(!username) {
+        res.send({error: true, message: "no username provided"});
+        return;
+    }
+    if(!password) {
+        res.send({error: true, message: "no password provided"});
+        return;
+    }
+
     let user = await User.findOne({username: username});
+
     if(!user) {
         res.send({ error: true, message: "incorrect username or password" });
         return;

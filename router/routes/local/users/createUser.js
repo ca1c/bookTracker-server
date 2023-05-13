@@ -1,14 +1,29 @@
 require('dotenv').config();
-const User = require('../../../Models/User.js');
+const User = require('../../../../Models/User.js');
 const bcrypt = require('bcrypt');
-const sendConfirmationEmail = require('../../../lib/sendConfirmationEmail.js');
+const sendConfirmationEmail = require('../../../../lib/sendConfirmationEmail.js');
 
 
 async function createUser(req, res) {
     const data = req.body;
     const { email, username, password } = data;
+
+    if(!email) {
+        res.send({error: true, message: "email not provided"});
+        return;
+    }
+    if(!username) {
+        res.send({error: true, message: "username not provided"});
+        return;
+    }
+    if(!password) {
+        res.send({error: true, message: "password not provided"});
+        return;
+    }
+
     let user = await User.findOne({username: username});
     let userEmail = await User.findOne({email: email});
+    
     if(user) {
         res.send({error: true, message: "username taken"});
         return;

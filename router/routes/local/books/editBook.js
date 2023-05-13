@@ -1,4 +1,4 @@
-const Book = require('../../../Models/Book.js');
+const Book = require('../../../../Models/Book.js');
 
 async function editBook(req, res) {
     let status;

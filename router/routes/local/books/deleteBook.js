@@ -1,9 +1,11 @@
-const Book = require('../../../Models/Book.js');
+const Book = require('../../../../Models/Book.js');
 
 async function deleteBook(req, res) {
+    const data = req.body;
+    const { username } = data; 
     let status;
 
-    if(!req.body.username) {
+    if(!username) {
         res.sendStatus(500);
         return;
     }
