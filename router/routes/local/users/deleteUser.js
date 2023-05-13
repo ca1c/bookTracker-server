@@ -4,7 +4,7 @@ const findSession = require('../../../../lib/findSession.js');
 
 async function deleteUser(req, res) {
     const data = req.body;
-    const { username, session } = data;
+    const { username, session, password } = data;
 
     if(!username) {
         res.send({error: true, message: "no username provided"});
@@ -12,6 +12,9 @@ async function deleteUser(req, res) {
     }
     if(!session) {
         res.send({error: true, message: "no session id provided"});
+    }
+    if(!password) {
+        res.send({error: true, message: "no password provided"});
     }
 
     let sessionFound = findSession(session);
@@ -27,13 +30,20 @@ async function deleteUser(req, res) {
         return;
     }
 
-    try {
-        await User.updateOne({ username: username, deleted: true});
-        res.send({error: false, message: "User deleted"});
-    }
-    catch(error) {
-        res.send({error: true, message: error})
-    }
+    bcrypt.compare(password, user.password, async function(err, result) {
+        if(!result) {
+            res.send({ error: true, message: "incorrect username or password" });
+            return;
+        }
+
+        try {
+            await User.updateOne({ username: username, deleted: true});
+            res.send({error: false, message: "User deleted"});
+        }
+        catch(error) {
+            res.send({error: true, message: error});
+        }
+    });
 }
 
 module.exports = deleteUser;

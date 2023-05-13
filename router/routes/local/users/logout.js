@@ -6,6 +6,8 @@ async function logout(req, res) {
     const data = req.body;
     const { id } = data;
 
+    console.log(id);
+
     await client.connect();
     console.log('Connected successfully to the server');
     const db = client.db('bookdb');
@@ -13,6 +15,7 @@ async function logout(req, res) {
     const session = await sessions.find({_id: id});
 
     if(session) {
+        console.log('ran');
         sessions.deleteOne({ _id: id }, function(err, obj) {
             if (err) throw err;
             res.send({session: true, message: "session deleted"});
