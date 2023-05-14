@@ -18,6 +18,7 @@ const authenticateFront = require('./routes/local/authenticateFront.js');
 const logout = require('./routes/local/users/logout.js');
 const deleteUser = require('./routes/local/users/deleteUser.js');
 const editUsername = require('./routes/local/users/editUsername.js');
+const changePassword = require('./routes/local/users/changePassword.js');
 
 
 //router
@@ -37,5 +38,6 @@ router.post('/authenticateFront', authenticateFront);
 router.post('/logout', logout);
 router.post('/deleteUser', deleteUser);
 router.post('/editUsername', editUsername);
+router.post('/changePassword', changePassword);
 
 module.exports = router;

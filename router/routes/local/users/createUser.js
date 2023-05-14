@@ -23,7 +23,6 @@ async function createUser(req, res) {
 
     let user = await User.findOne({username: username});
     let userEmail = await User.findOne({email: email});
-    
     if(user) {
         res.send({error: true, message: "username taken"});
         return;

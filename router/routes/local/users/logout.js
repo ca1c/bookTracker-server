@@ -15,7 +15,6 @@ async function logout(req, res) {
     const session = await sessions.find({_id: id});
 
     if(session) {
-        console.log('ran');
         sessions.deleteOne({ _id: id }, function(err, obj) {
             if (err) throw err;
             res.send({session: true, message: "session deleted"});

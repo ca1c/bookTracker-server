@@ -16,7 +16,7 @@ async function login(req, res) {
         return;
     }
 
-    let user = await User.findOne({username: username});
+    let user = await User.findOne({username: username, deleted: false});
 
     if(!user) {
         res.send({ error: true, message: "incorrect username or password" });
