@@ -9,7 +9,7 @@ async function authenticate(req, res) {
         return;
     }
 
-    let sessionFound = findSession(id);
+    let sessionFound = await findSession(id);
 
     if(!sessionFound) {
         res.send({session: false, message: "no session"});

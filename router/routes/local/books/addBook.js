@@ -1,11 +1,20 @@
 const Book = require('../../../../Models/Book.js');
+const findSession = require('../../../../lib/findSession.js');
 
 async function addBook(req, res) {
     let data = req.body;
-	const { title, author, image, pageCount, read, username } = data;
+	const { session, title, author, image, pageCount, read, username } = data;
+
+	const sessionFound = await findSession(session);
+
+	if(!sessionFound) {
+		res.send({error: true, message: "session not found"});
+		return;
+	}
 
 	if(!title || !author || !image || !pageCount || !read || !username) {
 		res.send({error: true, message: "missing book data"});
+		return;
 	}
 
 	const NewBook = new Book({

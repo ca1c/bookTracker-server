@@ -1,11 +1,22 @@
 const Book = require('../../../../Models/Book.js');
+const findSession = require('../../../../lib/findSession.js');
 
 async function readBookDoc(req, res) {
     const data = req.query;
-    const { username } = data;
+    const { username, session } = data;
 
+    if(!session) {
+        res.send({error: true, message: "no session id provided"});
+    }
     if(!username) {
         res.send({error: true, message: "no username provided in query"});
+        return;
+    }
+
+    const sessionFound = findSession(session);
+
+    if(!sessionFound) {
+        res.send({error: true, message: "session not found"});
         return;
     }
 
