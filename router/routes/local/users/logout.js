@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
-const client = new MongoClient('mongodb://127.0.0.1:27017/');
+const client = new MongoClient(pfocess.env.DB_URL);
 
 async function logout(req, res) {
     const data = req.body;
