@@ -20,9 +20,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 var sess = {
   secret: process.env.SECRET,
+  name: 'SessId',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 60*60*1000 },
+  cookie: {
+    maxAge: 60*60*1000 
+  },
   store: MongoStore.create({
     mongoUrl: process.env.DB_URL,
     autoRemove: 'interval',
