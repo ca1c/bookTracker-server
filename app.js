@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-var cors = require('cors')
+var cors = require('cors');
+const helmet = require('helmet');
 const app = express();
 const router = require('./router/controller');
 
@@ -35,14 +36,14 @@ var sess = {
 
 // parse application/json
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL);
+  res.header("Access-Control-Allow-Origin", 'http://localhost:8080');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-app.use(helmet());
-app.use((req, res, next) => {
-  res.status(404).send("Sorry can't find that!")
-})
+// app.use(helmet());
+// app.use((req, res, next) => {
+//   res.status(404).send("Sorry can't find that!")
+// })
 app.use(bodyParser.json());
 app.use(session(sess));
 app.use(cors());

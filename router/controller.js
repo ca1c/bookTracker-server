@@ -19,6 +19,8 @@ const logout = require('./routes/local/users/logout.js');
 const deleteUser = require('./routes/local/users/deleteUser.js');
 const editUsername = require('./routes/local/users/editUsername.js');
 const changePassword = require('./routes/local/users/changePassword.js');
+const forgotPassword = require('./routes/local/users/forgotPassword.js');
+const forgotPasswordEmail = require('./routes/local/users/forgotPasswordEmail.js');
 
 
 //router
@@ -39,5 +41,7 @@ router.post('/logout', logout);
 router.post('/deleteUser', deleteUser);
 router.post('/editUsername', editUsername);
 router.post('/changePassword', changePassword);
+router.post('/forgotPassword', forgotPassword);
+router.post('/forgotPasswordEmail', forgotPasswordEmail);
 
 module.exports = router;
