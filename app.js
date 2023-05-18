@@ -28,7 +28,7 @@ var sess = {
     maxAge: 60*60*1000 
   },
   store: MongoStore.create({
-    mongoUrl: process.env.DB_URL,
+    mongoUrl: process.env.DB_URL + 'bookdb',
     autoRemove: 'interval',
     autoRemoveInterval: 10 // In minutes. Default
   })
