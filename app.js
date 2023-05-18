@@ -12,7 +12,7 @@ const router = require('./router/controller');
 main().catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect(process.env.DB_URL + 'bookdb');
+  await mongoose.connect(process.env.DB_URL + 'bookdb?retryWrites=true&w=majority');
 }
 
 // NewBook.save();
@@ -28,7 +28,7 @@ var sess = {
     maxAge: 60*60*1000 
   },
   store: MongoStore.create({
-    mongoUrl: process.env.DB_URL + 'bookdb',
+    mongoUrl: process.env.DB_URL + 'bookdb?retryWrites=true&w=majority',
     autoRemove: 'interval',
     autoRemoveInterval: 10 // In minutes. Default
   })
