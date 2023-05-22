@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
-const client = new MongoClient(process.env.DB_URL + '?retryWrites=true&w=majority');
+const client = new MongoClient(process.env.DB_URL);
 
 async function logout(req, res) {
     const data = req.body;
