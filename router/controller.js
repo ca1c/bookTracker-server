@@ -21,6 +21,7 @@ const editUsername = require('./routes/local/users/editUsername.js');
 const changePassword = require('./routes/local/users/changePassword.js');
 const forgotPassword = require('./routes/local/users/forgotPassword.js');
 const forgotPasswordEmail = require('./routes/local/users/forgotPasswordEmail.js');
+const resendConfirmationEmail = require('./routes/local/users/resendConfirmationEmail.js');
 
 
 //router
@@ -43,5 +44,6 @@ router.post('/editUsername', editUsername);
 router.post('/changePassword', changePassword);
 router.post('/forgotPassword', forgotPassword);
 router.post('/forgotPasswordEmail', forgotPasswordEmail);
+router.post('/resendConfirmationEmail', resendConfirmationEmail);
 
 module.exports = router;
