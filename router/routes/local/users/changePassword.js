@@ -14,7 +14,7 @@ async function changePassword(req, res) {
         return;
     }
 
-    const user = await User.findOne({ username: username });
+    const user = await User.findOne({ username: username.toLowerCase() });
 
     if(!user) {
         res.send({error: true, message: "user not found"});
