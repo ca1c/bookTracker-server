@@ -21,7 +21,7 @@ async function createUser(req, res) {
         return;
     }
 
-    let user = await User.findOne({username: username});
+    let user = await User.findOne({username: username.toLowerCase()});
     let userEmail = await User.findOne({email: email});
     if(user) {
         res.send({error: true, message: "username taken"});
