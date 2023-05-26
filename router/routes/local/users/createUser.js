@@ -36,7 +36,7 @@ async function createUser(req, res) {
         console.log(typeof hash);
         const NewUser = new User({
             email: email,
-            username: username,
+            username: username.toLowerCase(),
             password: hash,
             emailConfirmed: false,
             deleted: false,
