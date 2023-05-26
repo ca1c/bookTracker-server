@@ -23,7 +23,7 @@ async function deleteUser(req, res) {
         res.send({error: true, message: "session id invalid"});
     }
 
-    let user = await User.findOne({ username: username });
+    let user = await User.findOne({ username: username.toLowerCase() });
 
     if(!user) {
         res.send({error: true, message: "user not found"});

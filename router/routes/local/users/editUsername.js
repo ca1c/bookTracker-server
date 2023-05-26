@@ -27,9 +27,10 @@ async function editUsername(req, res) {
         return;
     }
 
-    const user = await User.findOne({ username: username });
+    const user = await User.findOne({ username: username.toLowerCase() });
 
     if(newUsername) {
+
         if(!user.username) {
             res.send({error: true, message: "please log out and login to change your username again"});
             return;
@@ -45,9 +46,9 @@ async function editUsername(req, res) {
             return;
         }
 
-        await User.updateOne({username: username}, {username: newUsername});
-        await Book.updateMany({username: username}, {username: newUsername});
-        res.send({error: false, message: `Username changed to: ${newUsername}`});
+        await User.updateOne({username: username.toLowerCase()}, {username: newUsername.toLowerCase()});
+        await Book.updateMany({username: username.toLowerCase()}, {username: newUsername.toLowerCase()});
+        res.send({error: false, message: `Username changed to: ${newUsername.toLowerCase()}`});
         return;
     }
 
