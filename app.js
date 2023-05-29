@@ -52,6 +52,8 @@ app.use(router);
 
 
 
-const PORT = 4000;
+const PORT = 4001;
 
-app.listen(process.env.PORT || PORT);
+const listener = app.listen(process.env.PORT || PORT);
+
+module.exports = listener;

@@ -3,8 +3,7 @@ const findSession = require('../../../../lib/findSession.js');
 
 async function deleteBook(req, res) {
     const data = req.body;
-    const { session, username } = data; 
-    let status;
+    const { session, username, _id } = data;
 
     if(!session) {
         res.send({error: true, message: "no session id provided"});
@@ -12,6 +11,10 @@ async function deleteBook(req, res) {
     }
     if(!username) {
         res.send({error: true, message: "no username provided"});
+        return;
+    }
+    if(!_id) {
+        res.send({error: true, message: "no book id provided"});
         return;
     }
 
@@ -23,15 +26,15 @@ async function deleteBook(req, res) {
     }
 
     try {
-        await Book.updateOne({_id: req.body._id}, {deleted: true});
-        status = 200;
+        await Book.updateOne({_id: _id}, {deleted: true});
+        res.send({error: false, message: "book deleted successfully"});
     }
     catch(error) {
         console.log(error);
-        status = 500;
+        res.send({error: true, message: "db error"});
     }
 
-    res.sendStatus(status);
+    
 }
 
 module.exports = deleteBook;

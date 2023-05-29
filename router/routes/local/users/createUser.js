@@ -45,7 +45,7 @@ async function createUser(req, res) {
         NewUser.save();
         sendConfirmationEmail(email)
 
-        res.send({error: true, message: `Confirmation email sent to: ${email}`});
+        res.send({error: false, message: `Confirmation email sent to: ${email}`});
     });
 }
 
