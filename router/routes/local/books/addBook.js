@@ -20,7 +20,7 @@ async function addBook(req, res) {
 	let book = await Book.findOne({username: username, title: title});
 
 	if(book) {
-		res.send({error: false, message: "Cannot create duplicate books"});
+		res.send({error: true, message: "Cannot create duplicate books"});
 		return;
 	}
 
