@@ -17,6 +17,13 @@ async function addBook(req, res) {
 		return;
 	}
 
+	let book = await Book.findOne({username: username, title: title});
+
+	if(book) {
+		res.send({error: false, message: "Cannot create duplicate books"});
+		return;
+	}
+
 	const NewBook = new Book({
 		username: username,
 	    title: title,
