@@ -33,9 +33,9 @@ let user = {
     password: 'Test12345',
 };
 
-describe("POST /createUser", () => {
+describe("PUT /createUser", () => {
     it("Should return with an error attribute of false", async() => {
-        const res = await request(app).post("/createUser").send(user);
+        const res = await request(app).put("/createUser").send(user);
 
 
         // Instead of using the confirm email, I will just set the emailConfirmed attribute myself
@@ -78,9 +78,9 @@ describe("GET /searchBook", () => {
     });
 });
 
-describe("POST /addBook", () => {
+describe("PUT /addBook", () => {
     it("Should return with an error attribute of false", async () => {
-        const res = await request(app).post("/addBook").send({
+        const res = await request(app).put("/addBook").send({
             session: sess.id, 
             title: book.volumeInfo.title, 
             author: book.volumeInfo.authors[0] ?? "", 
