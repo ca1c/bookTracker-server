@@ -23,19 +23,10 @@ const forgotPassword = require('./routes/local/users/forgotPassword.js');
 const forgotPasswordEmail = require('./routes/local/users/forgotPasswordEmail.js');
 const resendConfirmationEmail = require('./routes/local/users/resendConfirmationEmail.js');
 
-
-//router
-//get
 router.get('/', index);
-router.get('/searchBook', searchBook);
-router.get('/readBookDoc', readBookDoc);
-router.get('/confirmEmail', confirmEmail);
 
-//post
-router.post('/addBook', addBook);
-router.post('/deleteBook', deleteBook);
-router.post('/editBook', editBook);
-router.post('/createUser', createUser);
+//users
+router.get('/confirmEmail', confirmEmail);
 router.post('/login', login);
 router.post('/authenticateFront', authenticateFront);
 router.post('/logout', logout);
@@ -45,5 +36,13 @@ router.post('/changePassword', changePassword);
 router.post('/forgotPassword', forgotPassword);
 router.post('/forgotPasswordEmail', forgotPasswordEmail);
 router.post('/resendConfirmationEmail', resendConfirmationEmail);
+router.put('/createUser', createUser);
+
+//books
+router.get('/searchBook', searchBook);
+router.get('/readBookDoc', readBookDoc);
+router.put('/addBook', addBook);
+router.post('/deleteBook', deleteBook);
+router.post('/editBook', editBook);
 
 module.exports = router;
