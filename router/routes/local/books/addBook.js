@@ -12,7 +12,7 @@ async function addBook(req, res) {
 		return;
 	}
 
-	if(!title || !author || !image || !pageCount || !read || !username) {
+	if(!title || !author || !pageCount || !image || !read || !username) {
 		res.send({error: true, message: "missing book data"});
 		return;
 	}
@@ -28,7 +28,7 @@ async function addBook(req, res) {
 		username: username,
 	    title: title,
 	    author: author,
-	    image: image,
+	    image: `http://books.google.com/books/content?id=${image}&printsec=frontcover&img=1&zoom=1&source=gbs_api`,
 	    pageCount: pageCount,
 	    read: read,
         deleted: false,
